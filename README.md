@@ -4,19 +4,17 @@
 **Student Email**: enyilmaz@myseneca.ca  
 **Student Number**: 119266237  
 
----
+
 
 ## **GitHub URL**
-[GitHub Repository](https://github.com/EdaNurYil/WEB322_Assigment.git)
+(https://github.com/EdaNurYil/WEB322_Assigment.git)
 
----
+
 
 ## **Vercel URLs**
-- [Deployed App (Main)](https://web-322-assigment.vercel.app/)  
-- [Deployed App (Git Master)](https://web-322-assigment-git-master-eda-nur-yilmazs-projects.vercel.app/)  
-- [Deployed App (Other)](https://web-322-assigment-f5kf3aejw-eda-nur-yilmazs-projects.vercel.app/)  
-
----
+- (https://web-322-assigment.vercel.app/)  
+- (https://web-322-assigment-git-master-eda-nur-yilmazs-projects.vercel.app/)  
+- (https://web-322-assigment-f5kf3aejw-eda-nur-yilmazs-projects.vercel.app/)  
 
 ## **Technology Stack**
 
