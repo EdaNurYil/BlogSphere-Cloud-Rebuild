@@ -18,7 +18,7 @@ https://github.com/EdaNurYil/WEB322_Assigment
 - (https://web-322-assigment-f5kf3aejw-eda-nur-yilmazs-projects.vercel.app/)  
 
 ##  **Home Page**:
-- (http://localhost:3000)  
+- (http://localhost:3000/)  
   The main landing page of the application. 
 
 ---
