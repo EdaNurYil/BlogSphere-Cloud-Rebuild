@@ -9,6 +9,7 @@
 ## **GitHub URL**
 (https://github.com/EdaNurYil/WEB322_Assigment.git)
 
+https://github.com/EdaNurYil/WEB322_Assigment
 
 
 ## **Vercel URLs**
@@ -16,11 +17,8 @@
 - (https://web-322-assigment-git-master-eda-nur-yilmazs-projects.vercel.app/)  
 - (https://web-322-assigment-f5kf3aejw-eda-nur-yilmazs-projects.vercel.app/)  
 
-## **Technology Stack**
-
-- **Frontend**:  
-- **Backend**: TBD  
-- **Database**: TBD  
+- **Home Page**: `http://localhost:3000`  
+  The main landing page of the application. 
 
 ---
 
