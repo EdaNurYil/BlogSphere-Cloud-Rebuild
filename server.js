@@ -17,5 +17,14 @@ app.get('/', (req , res) =>{
      var htmlPath = path.join(__dirname, '/views/index.html');
      res.sendFile(htmlPath);
 });
+
+
+// Set route for about page
+app.get("/about", (req, res) => {
+     var htmlPath = path.join(__dirname, "/views/about.html");
+     res.sendFile(htmlPath);
+ });
+
+
 // start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
