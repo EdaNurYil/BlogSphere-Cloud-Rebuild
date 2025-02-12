@@ -30,6 +30,16 @@ app.get("/about", (req, res) => {
      res.sendFile(htmlPath);
  });
 
+ app.get('/categories' , (req,res)=>{
+     var htmlPath = path.join(__dirname, "/views/about.html");
+     res.sendFile(htmlPath);
+ })
+
+ app.get('/articles' , (req,res)=>{
+     var htmlPath = path.join(__dirname, "/views/about.html");
+     res.sendFile(htmlPath);
+ })
+
 
 // start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`Express http server listening on port ${HTTP_PORT}`));

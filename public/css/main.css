@@ -1,0 +1,14 @@
+section {
+    display: flex;
+    flex-direction: column; /* Stack h2 and p vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center;     /* Center items horizontally */
+    height: 70vh;
+    margin: 0 auto;          /* Center section horizontally if it has a max-width */
+    text-align: center;
+    max-width: 600px;
+}
+
+h2 {
+    margin-bottom: 1rem; 
+}
