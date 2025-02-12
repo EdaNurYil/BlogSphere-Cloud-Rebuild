@@ -10,6 +10,9 @@ const express = require('express');
 // instantiate the "app" object
 const app = express(); 
 
+//content service module
+const contentService = require('./content-service');
+
 // setup a port
 const HTTP_PORT = process.env.PORT || 1000; 
 
@@ -17,10 +20,20 @@ const HTTP_PORT = process.env.PORT || 1000;
 //middleware to serve static files from the "public" folder
 app.use(express.static('public'));
 
+ //initilize content
+ contentService.initialize()
+ .then(()=>{
+      console.log('Content service initialized successfully.');
+ 
+ })
+ .catch((err)=>{
+      console.error('Error initializing content service:', err);
+ })
 
-// Route to redirect "/" to "/about"
+// Route to home
 app.get('/', (req , res) =>{
-     res.redirect('/about');
+     res.send('Welcome to the Content Service Home Page!');
+     //res.redirect('/about');
 });
 
 
@@ -31,14 +44,27 @@ app.get("/about", (req, res) => {
  });
 
  app.get('/categories' , (req,res)=>{
-     var htmlPath = path.join(__dirname, "/views/about.html");
-     res.sendFile(htmlPath);
- })
+     contentService.getCategories()
+     .then((data) =>{
+          res.json(data);
+     })
+     .catch((err) =>{
+          res.json({message:err});
+     });
+ });
 
  app.get('/articles' , (req,res)=>{
-     var htmlPath = path.join(__dirname, "/views/about.html");
-     res.sendFile(htmlPath);
- })
+     contentService.getAllArticles()
+     .then((data) =>{
+          res.json(data);
+     }) 
+     .catch((err) => {
+          res.json({message: err});
+     });
+ });
+
+ 
+
 
 
 // start the server on the port and output a confirmation to the console

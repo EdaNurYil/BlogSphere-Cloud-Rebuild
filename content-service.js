@@ -1,15 +1,15 @@
 //built file system 
 
 const fs = require("fs");
-const path = reqire('path');
+const path = require('path');
 
 let article = [];
 let categoried = [];
 
 function initialize(){
     return new Promise ((resolve, reject) =>{
-        const categoriesPath = path.join(__dirname,"/data/categories.json");
-        const articlePath = path.join(__dirname, '/data/article.json');
+        const categoriesPath = path.join(__dirname,"./data/categories.json");
+        const articlePath = path.join(__dirname, './data/article.json');
     
         fs.readFile(articlePath, "utf8", (err,articleData) =>{
             if(err){
@@ -68,7 +68,7 @@ function getCategories() {
       });
   }
 
-  module.export = {
+  module.exports = {
     initialize,
     getPublishedArticles,
     getAllArticles,
