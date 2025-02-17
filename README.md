@@ -12,16 +12,35 @@
 https://github.com/EdaNurYil/WEB322_Assigment
 
 
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/EdaNurYil/WEB322_Assigment.git
+   
+   ```
+
+2. **Install dependencies**:
+   Ensure you have server.js installed, then run:
+   ```bash
+   npm install
+   ```
+
+3. **Start the server**:
+   Launch the application locally:
+   ```bash
+   npm start
+   ```
+
 ## **Vercel URLs**
 - (https://web-322-assigment-eda.vercel.app/)  
 - (https://web-322-assigment-eda-git-master-eda-nur-yilmazs-projects.vercel.app/)  
 - (https://web-322-assigment-ors8o2p2c-eda-nur-yilmazs-projects.vercel.app/)  
 
-##  **Home Page**:
-- (http://localhost:1000/)  
-- (http://localhost:1000/about)
-- (http://localhost:1000/articles)
-- (http://localhost:1000/categories)
+##  
+-  **Home Page**:(http://localhost:1000/about)
+-  **Article Page**:(http://localhost:1000/articles)
+-  **Categories Page**:(http://localhost:1000/categories)
   The main landing page of the application. 
 
 ---
