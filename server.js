@@ -25,7 +25,7 @@ const HTTP_PORT = process.env.PORT || 1000;
 
 
 //middleware to serve static files from the "public" folder
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, "public")));
 
  //initilize content
  contentService.initialize()
