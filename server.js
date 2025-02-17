@@ -39,8 +39,7 @@ app.use(express.static('public'));
 
 // Route to home
 app.get('/', (req , res) =>{
-    
-     res.redirect('/about');
+      res.redirect('/about');
 });
 
 
