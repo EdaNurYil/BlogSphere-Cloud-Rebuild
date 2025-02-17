@@ -39,8 +39,8 @@ app.use(express.static('public'));
 
 // Route to home
 app.get('/', (req , res) =>{
-     res.send('Welcome to the Content Service Home Page!');
-     //res.redirect('/about');
+    // res.send('Welcome to the Content Service Home Page!');
+     res.redirect('/about');
 });
 
 
