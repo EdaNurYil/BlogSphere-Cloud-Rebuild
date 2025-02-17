@@ -13,12 +13,15 @@ https://github.com/EdaNurYil/WEB322_Assigment
 
 
 ## **Vercel URLs**
-- (https://web-322-assigment.vercel.app/)  
-- (https://web-322-assigment-git-master-eda-nur-yilmazs-projects.vercel.app/)  
-- (https://web-322-assigment-f5kf3aejw-eda-nur-yilmazs-projects.vercel.app/)  
+- (https://web-322-assigment-eda.vercel.app/)  
+- (https://web-322-assigment-eda-git-master-eda-nur-yilmazs-projects.vercel.app/)  
+- (https://web-322-assigment-ors8o2p2c-eda-nur-yilmazs-projects.vercel.app/)  
 
 ##  **Home Page**:
-- (http://localhost:3000/)  
+- (http://localhost:1000/)  
+- (http://localhost:1000/about)
+- (http://localhost:1000/articles)
+- (http://localhost:1000/categories)
   The main landing page of the application. 
 
 ---
