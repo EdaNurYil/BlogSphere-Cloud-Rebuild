@@ -69,6 +69,9 @@ app.get("/about", (req, res) => {
      });
  });
 
+ app.get('/articles/add', (req, res) => {
+     res.sendFile(path.join(__dirname, 'views', 'addArticle.html'));
+     })
  
 
 
