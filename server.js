@@ -28,7 +28,13 @@ const streamifier = require('streamifier');
 // setup a port
 const HTTP_PORT = process.env.PORT || 1000; 
 
-
+//cloudinary configuration
+cloudinary.config({
+    cloud_name: 'dfdbhch63',
+    api_key: '248556127591652',
+    api_secret: 'DRXP9oASPRH3b1zFxs1oc1B828A',
+    secure: true
+   })
 
 
 //middleware to serve static files from the "public" folder
@@ -83,7 +89,9 @@ app.get("/about", (req, res) => {
      }
      // If no query parameters are provided, return all articles
      else {
-         res.json(articles); // Assuming 'articles' is globally available in your file
+        contentService.getAllArticles()
+        .then(articles=>res.json(articles))
+        .catch(err => res.status(404).json({ message: err }));
      }
  });
 
@@ -99,13 +107,7 @@ app.get("/about", (req, res) => {
      res.sendFile(path.join(__dirname, 'views', 'addArticle.html'));
      })
  
-//cloudinary configuration
-cloudinary.config({
- cloud_name: 'dfdbhch63',
- api_key: '248556127591652',
- api_secret: 'DRXP9oASPRH3b1zFxs1oc1B828A',
- secure: true
-})
+
 
 const upload = multer(); // No disk storage, files are stored in memory
 
