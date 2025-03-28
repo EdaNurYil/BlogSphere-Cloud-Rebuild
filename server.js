@@ -96,17 +96,11 @@ app.get("/about", (req, res) => {
         });
 });
 
- app.get('/article/:id', (req, res) => {
-     const articleId = req.params.id; // Extract the article ID from the URL
- 
-     contentService.getArticleById(articleId)
-         .then(article => res.json(article)) // Return the found article as JSON
-         .catch(err => res.status(404).json({ message: err })); // Handle errors if not found
- });
-
- app.get('/articles/add', (req, res) => {
-     res.render('addArticle', {title: 'Add Article'});
-     })
+app.get('/article/:id', (req, res) => {
+    contentService.getArticleById(req.params.id)
+        .then(article => res.json(article))
+        .catch(err => res.status(404).json({ message: err }));
+  });
  
 
 
