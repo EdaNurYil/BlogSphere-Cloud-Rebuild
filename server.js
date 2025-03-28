@@ -75,28 +75,26 @@ app.get("/about", (req, res) => {
  });
 
  app.get('/articles', (req, res) => {
-     // Extract query parameters
-     const { category, minDate } = req.query;
- 
-     // If the 'category' query parameter is provided, filter by category
-     if (category) {
-         contentService.getArticlesByCategory(category)
-             .then(articles => res.json(articles))
-             .catch(err => res.status(404).json({ message: err }));
-     }
-     // If the 'minDate' query parameter is provided, filter by minDate
-     else if (minDate) {
-         contentService.getArticlesByMinDate(minDate)
-             .then(articles => res.json(articles))
-             .catch(err => res.status(404).json({ message: err }));
-     }
-     // If no query parameters are provided, return all articles
-     else {
-        contentService.getAllArticles()
-        .then(articles=>res.json(articles))
-        .catch(err => res.status(404).json({ message: err }));
-     }
- });
+    const { category, minDate } = req.query;
+
+    let fetchArticles;
+
+    if (category) {
+        fetchArticles = contentService.getArticlesByCategory(category);
+    } else if (minDate) {
+        fetchArticles = contentService.getArticlesByMinDate(minDate);
+    } else {
+        fetchArticles = contentService.getAllArticles();
+    }
+
+    fetchArticles
+        .then(articles => {
+            res.render('articles', { articles, errorMessage: null });
+        })
+        .catch(err => {
+            res.render('articles', { articles: [], errorMessage: "Error fetching articles or no articles available." });
+        });
+});
 
  app.get('/article/:id', (req, res) => {
      const articleId = req.params.id; // Extract the article ID from the URL
