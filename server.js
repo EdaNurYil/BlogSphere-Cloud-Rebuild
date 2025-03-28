@@ -18,13 +18,7 @@ const express = require('express');
 const app = express(); 
 
 //content service module
-
 const contentService = require('./content-service');
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.static('public'));
 
 //add the cloudinary Configuration and multer step
 const multer = require("multer");
@@ -64,7 +58,7 @@ app.get('/', (req , res) =>{
 // Set route for about page
 app.get("/about", (req, res) => {
      var htmlPath = path.join(__dirname, "/views/about.html");
-     res.render(htmlPath);
+     res.sendFile(htmlPath);
  });
 
  app.get('/categories' , (req,res)=>{
@@ -84,35 +78,19 @@ app.get("/about", (req, res) => {
      // If the 'category' query parameter is provided, filter by category
      if (category) {
          contentService.getArticlesByCategory(category)
-             .then(articles => {
-                if(articles.length ===0){
-                    return res.render('article', {error: "No articles found for the selected category",articles: [] });
-
-                }
-                res.render('articles', {articles});
-             })
+             .then(articles => res.json(articles))
              .catch(err => res.status(404).json({ message: err }));
      }
      // If the 'minDate' query parameter is provided, filter by minDate
      else if (minDate) {
          contentService.getArticlesByMinDate(minDate)
-             .then(articles => {
-                if (articles.length === 0) {
-                    return res.render('articles', { error: 'No articles found for the selected date range.', articles: [] });
-                }
-                res.render('articles', { articles });
-             })
+             .then(articles => res.json(articles))
              .catch(err => res.status(404).json({ message: err }));
      }
      // If no query parameters are provided, return all articles
      else {
         contentService.getAllArticles()
-        .then(articles=> {
-            if (articles.length === 0) {
-                return res.render('articles', { error: 'No articles found.', articles: [] });
-            }
-            res.render('articles', { articles });
-     })
+        .then(articles=>res.json(articles))
         .catch(err => res.status(404).json({ message: err }));
      }
  });
