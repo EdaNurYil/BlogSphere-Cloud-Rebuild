@@ -25,6 +25,10 @@ const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
 
+//ejs set
+app.set('view engine', 'ejs');
+
+
 // setup a port
 const HTTP_PORT = process.env.PORT || 1000; 
 
@@ -57,8 +61,7 @@ app.get('/', (req , res) =>{
 
 // Set route for about page
 app.get("/about", (req, res) => {
-     var htmlPath = path.join(__dirname, "/views/about.html");
-     res.sendFile(htmlPath);
+    res.render('about', {title: 'About'})
  });
 
  app.get('/categories' , (req,res)=>{
@@ -104,7 +107,7 @@ app.get("/about", (req, res) => {
  });
 
  app.get('/articles/add', (req, res) => {
-     res.sendFile(path.join(__dirname, 'views', 'addArticle.html'));
+     res.render('addArticle', {title: 'Add Article'});
      })
  
 
