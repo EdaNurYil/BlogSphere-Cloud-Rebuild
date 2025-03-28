@@ -64,15 +64,15 @@ app.get("/about", (req, res) => {
     res.render('about', {title: 'About'})
  });
 
- app.get('/categories' , (req,res)=>{
-     contentService.getCategories()
-     .then((data) =>{
-          res.json(data);
-     })
-     .catch((err) =>{
-          res.json({message:err});
-     });
- });
+ app.get('/categories', (req, res) => {
+    contentService.getCategories()
+        .then(categories => {
+            res.render('categories', { categories, errorMessage: null });
+        })
+        .catch(err => {
+            res.render('categories', { categories: [], errorMessage: "Error fetching categories or no categories available." });
+        });
+});
 
  app.get('/articles', (req, res) => {
     const { category, minDate } = req.query;
