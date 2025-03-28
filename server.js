@@ -20,6 +20,9 @@ const app = express();
 //content service module
 const contentService = require('./content-service');
 
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
 //add the cloudinary Configuration and multer step
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
@@ -58,7 +61,7 @@ app.get('/', (req , res) =>{
 // Set route for about page
 app.get("/about", (req, res) => {
      var htmlPath = path.join(__dirname, "/views/about.html");
-     res.sendFile(htmlPath);
+     res.render(htmlPath);
  });
 
  app.get('/categories' , (req,res)=>{
