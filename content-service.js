@@ -92,11 +92,26 @@ function addArticle(articleData) {
 }
 
 // Function to get articles by category
-function getArticlesByCategory(category) {
+function getArticlesByCategory(categoryId) {
     return new Promise((resolve, reject) => {
-        const filteredArticles = articles.filter(article => article.category === category);
-        if (filteredArticles.length > 0) resolve(filteredArticles);
-        else reject("No results returned");
+        // Find the category name based on categoryId
+        const category = categories.find(c => c.id == categoryId);
+        if (!category) {
+            return reject("Category not found");
+        }
+
+        // Filter articles by categoryId
+        const filteredArticles = articles.filter(article => article.category == categoryId);
+        
+        if (filteredArticles.length > 0) {
+            // Add category name to articles before sending the response
+            filteredArticles.forEach(article => {
+                article.categoryName = category.name; // Assuming `name` is the category name field
+            });
+            resolve(filteredArticles);
+        } else {
+            reject("No results returned");
+        }
     });
 }
 
@@ -105,19 +120,35 @@ function getArticlesByMinDate(minDateStr) {
     return new Promise((resolve, reject) => {
         const minDate = new Date(minDateStr);
         const filteredArticles = articles.filter(article => new Date(article.articleDate) >= minDate);
-        if (filteredArticles.length > 0) resolve(filteredArticles);
-        else reject("No results returned");
+        
+        if (filteredArticles.length > 0) {
+            // Add category names to articles
+            filteredArticles.forEach(article => {
+                const category = categories.find(c => c.id == article.category);
+                article.categoryName = category ? category.name : 'Unknown';
+            });
+            resolve(filteredArticles);
+        } else {
+            reject("No results returned");
+        }
     });
-}
+ }
 
 // Function to get an article by ID
 function getArticleById(id) {
     return new Promise((resolve, reject) => {
         const foundArticle = articles.find(article => article.id == id);
-        if (foundArticle) resolve(foundArticle);
-        else reject("No result returned");
+        if (foundArticle) {
+            // Add category name to article
+            const category = categories.find(c => c.id == foundArticle.category);
+            foundArticle.categoryName = category ? category.name : 'Unknown';
+            resolve(foundArticle);
+        } else {
+            reject("No result returned");
+        }
     });
 }
+
 
 // Export all functions
 module.exports = {
