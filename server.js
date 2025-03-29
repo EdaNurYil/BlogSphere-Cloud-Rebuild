@@ -98,10 +98,26 @@ app.get("/about", (req, res) => {
 });
 
 app.get('/article/:id', (req, res) => {
-    contentService.getArticleById(req.params.id)
-        .then(article => res.json(article))
-        .catch(err => res.status(404).json({ message: err }));
-  });
+    const articleId = req.params.id;
+
+    contentService.getArticleById(articleId)
+        .then(article => {
+            if (!article || !article.published) {
+                return res.status(404).render('404', { errorMessage: "Article not found or not published." });
+            }
+
+            // Fetch category name based on category ID
+            contentService.getCategoryById(article.category)
+                .then(category => {
+                    article.categoryName = category ? category.name : "Unknown Category";
+
+                    res.render('article', { article, errorMessage: null });
+                })
+                .catch(err => res.render('article', { errorMessage: "Error fetching category name." }));
+        })
+        .catch(err => res.status(404).render('404', { errorMessage: "Article not found." }));
+});
+
 
   app.get('/articles/add', (req, res) => {
     res.render('addArticle');

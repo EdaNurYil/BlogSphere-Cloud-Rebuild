@@ -155,6 +155,17 @@ function getCategoryNameById(categoryId) {
     return category ? {categoryId: category.id, categoryName: category.name} : null; // Return null if the category is not found
 }
 
+const getCategoryById = (categoryId) => {
+    return new Promise((resolve, reject) => {
+        const category = categories.find(cat => cat.id === parseInt(categoryId));
+        if (category) {
+            resolve(category);
+        } else {
+            reject("Category not found");
+        }
+    });
+};
+
 // Export all functions
 module.exports = {
     initialize,
@@ -165,5 +176,6 @@ module.exports = {
     getArticlesByCategory,
     getArticlesByMinDate,
     getArticleById,
-    getCategoryNameById
+    getCategoryNameById,
+    getCategoryById
 };
