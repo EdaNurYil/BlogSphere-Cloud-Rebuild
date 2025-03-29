@@ -1,20 +1,20 @@
 [
-    {
-        "id" : 1,
-        "title" : "Looking at the Science of Sunglasses",
-        "content" : "The sunglasses at the dollar store feel flimsy, yet I buy a pair.",
-        "author" : "Jonathan Jarry",
-        "published" : true,
-        "date": "2019-05-24",
-        "category" : "Sunglasses"
-    },
-    {
-        "id" : 2,
-        "title" : "Eyeglasses",
-        "content" : "Eyeglasses, lenses set in frames for wearing in front of the eyes to aid vision or to correct such defects of vision as myopia, hyperopia, and astigmatism.",
-        "author" : "Roger Bacon",
-        "published" : true,
-        "date": "2025-05-11",
-        "category" : "Optics"
-    }
+  {
+    "id": 1,
+    "title": "Looking at the Science of Sunglasses",
+    "content": "The sunglasses at the dollar store feel flimsy, yet I buy a pair.",
+    "author": "Jonathan Jarry",
+    "published": true,
+    "date": "2019-05-24",
+    "category": 1
+  },
+  {
+    "id": 2,
+    "title": "Eyeglasses",
+    "content": "Eyeglasses, lenses set in frames for wearing in front of the eyes to aid vision or to correct such defects of vision as myopia, hyperopia, and astigmatism.",
+    "author": "Roger Bacon",
+    "published": true,
+    "date": "2025-05-11",
+    "category": 2
+  }
 ]

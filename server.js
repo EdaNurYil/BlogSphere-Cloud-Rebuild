@@ -80,12 +80,13 @@ app.get("/about", (req, res) => {
     let fetchArticles;
 
     if (category) {
-        fetchArticles = contentService.getArticlesByCategory(category);
+        fetchArticles = contentService.getAllArticles();
     } else if (minDate) {
         fetchArticles = contentService.getArticlesByMinDate(minDate);
     } else {
         fetchArticles = contentService.getAllArticles();
     }
+
 
     fetchArticles
         .then(articles => {
@@ -101,46 +102,40 @@ app.get('/article/:id', (req, res) => {
         .then(article => res.json(article))
         .catch(err => res.status(404).json({ message: err }));
   });
+
+  app.get('/articles/add', (req, res) => {
+    res.render('addArticle');
+});
  
 
 
 const upload = multer(); // No disk storage, files are stored in memory
 
-// Route to handle form submissions for adding new articles
 app.post('/articles/add', upload.single("featureImage"), (req, res) => {
-    
-     // Check if a file was uploaded
-     if (req.file) {
-         // Function to upload the image to Cloudinary using a stream
-         let streamUpload = (req) => {
-             return new Promise((resolve, reject) => {
-                 let stream = cloudinary.uploader.upload_stream(
-                     (error, result) => {
-                         if (result) resolve(result); // Resolve promise with result if successful
-                         else reject(error); // Reject if there's an error
-                     }
-                 );
-                 // Convert the uploaded file buffer to a readable stream and pipe it to Cloudinary
-                 streamifier.createReadStream(req.file.buffer).pipe(stream);
-             });
-         };
- 
-         // Async function to handle the upload and return the uploaded image URL
-         async function upload(req) {
-             let result = await streamUpload(req);
-             return result;
-         }
- 
-         // Upload the image and then process the article with the image URL
-         upload(req)
-             .then((uploaded) => {
-                 processArticle(uploaded.url); // Call function with uploaded image URL
-             })
-             .catch(err => res.status(500).json({ message: "Image upload failed", error: err }));
-     } else {
-         // If no image is uploaded, process the article with an empty image URL
-         processArticle("");
-     }
+    if (req.file) {
+        let streamUpload = (req) => { //upload the image to Cloudinary
+            return new Promise((resolve, reject) => {
+                let stream = cloudinary.uploader.upload_stream( // create a Cloudinary upload stream
+                    (error, result) => {
+                        if (result) resolve(result);//resolve the promise with the result
+                        else reject(error);// reject the promise if there is an error
+                    }
+                );
+                streamifier.createReadStream(req.file.buffer).pipe(stream);
+            });
+        };
+
+        async function upload(req) { //its an async function to uploading the image and returning the uploaded URL
+            let result = await streamUpload(req); // its waiting for the image upload to complete
+            return result;
+        }
+
+        upload(req).then((uploaded) => { //function to call upload function
+            processArticle(uploaded.url); //when its uploaded its call processArticle function to process and save it
+        }).catch(err => res.status(500).json({ message: "Image upload failed", error: err }));
+    } else {
+        processArticle("");
+    }
  
      // Function to process the article data and save it using contentService
      function processArticle(imageUrl) {

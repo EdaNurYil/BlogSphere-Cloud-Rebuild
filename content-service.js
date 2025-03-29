@@ -60,7 +60,14 @@ function getAllArticles() {
         if (articles.length === 0) {
             return reject("No results returned");
         }
-        resolve(articles);
+
+        // Replace CategoryID with CategoryName for each article
+        const articlesWithCategoryNames = articles.map(article => {
+            const categoryName = getCategoryNameById(article.category); // Get category name
+            return { ...article, category: categoryName }; // Replace the category ID with the category name
+        });
+
+        resolve(articlesWithCategoryNames);
     });
 }
 
@@ -73,7 +80,6 @@ function getCategories() {
         resolve(categories);
     });
 }
-
 // Function to add a new article
 function addArticle(articleData) {
     return new Promise((resolve, reject) => {
@@ -83,22 +89,48 @@ function addArticle(articleData) {
         // Assign a unique ID based on the current length of the articles array
         articleData.id = articles.length + 1;
 
+        // Map CategoryID to CategoryName
+        const categoryName = getCategoryNameById(articleData.category); // Get CategoryName
+        if (!categoryName) {
+            return reject("Invalid category ID");
+        }
+        articleData.category = categoryName; // Update article to use CategoryName
+
         // Add the new article to the articles array
         articles.push(articleData);
 
-        // Resolve the promise with the new article data
-        resolve(articleData);
+        // Write the updated articles array back to the file
+        const articlesPath = path.join(__dirname, './data/article.json');
+        fs.writeFile(articlesPath, JSON.stringify(articles, null, 2), (err) => {
+            if (err) {
+                reject("Unable to save article data.");
+            } else {
+                resolve(articleData); // Resolve with the new article data
+            }
+        });
     });
 }
+
+
 
 // Function to get articles by category
 function getArticlesByCategory(category) {
     return new Promise((resolve, reject) => {
         const filteredArticles = articles.filter(article => article.category === category);
-        if (filteredArticles.length > 0) resolve(filteredArticles);
-        else reject("No results returned");
+
+        if (filteredArticles.length > 0) {
+            // Replace CategoryID with CategoryName for the filtered articles
+            const articlesWithCategoryNames = filteredArticles.map(article => {
+                const categoryName = getCategoryNameById(article.category);
+                return { ...article, category: categoryName };
+            });
+            resolve(articlesWithCategoryNames);
+        } else {
+            reject("No results returned");
+        }
     });
 }
+
 
 // Function to get articles by minimum date
 function getArticlesByMinDate(minDateStr) {
@@ -118,6 +150,10 @@ function getArticleById(id) {
         else reject("No result returned");
     });
 }
+function getCategoryNameById(categoryId) {
+    const category = categories.find(c => c.id === categoryId);
+    return category ? {categoryId: category.id, categoryName: category.name} : null; // Return null if the category is not found
+}
 
 // Export all functions
 module.exports = {
@@ -128,5 +164,6 @@ module.exports = {
     addArticle,
     getArticlesByCategory,
     getArticlesByMinDate,
-    getArticleById
+    getArticleById,
+    getCategoryNameById
 };
