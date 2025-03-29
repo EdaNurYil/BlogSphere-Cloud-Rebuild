@@ -120,7 +120,13 @@ app.get('/article/:id', (req, res) => {
 
 
   app.get('/articles/add', (req, res) => {
-    res.render('addArticle');
+    contentService.getCategories()
+        .then(categories => {
+            res.render('addArticle', { categories, errorMessage: null });
+        })
+        .catch(err => {
+            res.render('addArticle', { categories: [], errorMessage: "Error fetching categories." });
+        });
 });
  
 
