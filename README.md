@@ -26,7 +26,13 @@ https://github.com/EdaNurYil/WEB322_Assigment
    npm install
    ```
 
-3. **Start the server**:
+3. **Install ejs**:
+   Ensure you have server.js installed, then run:
+   ```bash
+   npm install ejs
+   ```
+
+4. **Start the server**:
    Launch the application locally:
    ```bash
    npm start
@@ -41,6 +47,7 @@ https://github.com/EdaNurYil/WEB322_Assigment
 -  **Home Page**:(http://localhost:1000/about)
 -  **Article Page**:(http://localhost:1000/articles)
 -  **Categories Page**:(http://localhost:1000/categories)
+-  **AddArticlePage**:(http://localhost:1000/articles/add)
   The main landing page of the application. 
 
 ---

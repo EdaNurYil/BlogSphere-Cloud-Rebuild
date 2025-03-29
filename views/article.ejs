@@ -18,7 +18,7 @@
             <p><strong>Date:</strong> <%= new Date(article.date + 'T00:00:00').toLocaleDateString() %></p>
     
             <% if (article.featureImage) { %>
-                <img src="<%= article.featureImage %>" alt="Feature Image" class="img-fluid">
+                <img src="<%= article.featureImage %>" alt="Feature Image" class="img-fluid"> 
             <% } %>
     
             <p><%= article.content %></p>
