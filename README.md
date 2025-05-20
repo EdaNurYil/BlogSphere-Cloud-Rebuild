@@ -1,22 +1,22 @@
-# WEB322 Assignment 1
+## BlogSphere Cloud Rebuild
 
-**Student Name**: Eda Nur Yilmaz  
-**Student Email**: enyilmaz@myseneca.ca  
-**Student Number**: 119266237  
+**Name**: Eda Nur Yilmaz  
+**Email**: ed4yilmaz@hotmail.com
+
 
 
 
 ## **GitHub URL**
-(https://github.com/EdaNurYil/WEB322_Assigment.git)
+(https://github.com/EdaNurYil/BlogSphere-Cloud-Rebuild.git)
 
-https://github.com/EdaNurYil/WEB322_Assigment
+https://github.com/EdaNurYil/BlogSphere-Cloud-Rebuild
 
 
 ## Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/EdaNurYil/WEB322_Assigment.git
+   git clone https://github.com/EdaNurYil/BlogSphere-Cloud-Rebuild.git
    
    ```
 
