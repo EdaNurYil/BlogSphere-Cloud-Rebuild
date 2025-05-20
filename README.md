@@ -52,6 +52,3 @@ https://github.com/EdaNurYil/BlogSphere-Cloud-Rebuild
 
 ---
 
-## **Note**
-
-By submitting this assignment, I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part of this assignment has been copied manually or electronically from other sources (including websites) or distributed to other students.
